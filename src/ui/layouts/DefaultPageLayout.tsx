@@ -1,0 +1,62 @@
+"use client";
+/*
+ * Documentation:
+ * Default Page Layout — https://app.subframe.com/e0dfc8dc556f/library?component=Default+Page+Layout_a57b1c43-310a-493f-b807-8cc88e2452cf
+ */
+
+import React from "react";
+import { ModernNavbar } from "@/ui/components/ModernNavbar";
+import { Button } from "@/ui/components/Button";
+import * as SubframeUtils from "../utils";
+
+interface DefaultPageLayoutRootProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+const DefaultPageLayoutRoot = React.forwardRef<
+  HTMLDivElement,
+  DefaultPageLayoutRootProps
+>(function DefaultPageLayoutRoot(
+  { children, className, ...otherProps }: DefaultPageLayoutRootProps,
+  ref
+) {
+  return (
+    <div
+      className={SubframeUtils.twClassNames(
+        "flex h-screen w-full items-center",
+        className
+      )}
+      ref={ref}
+      {...otherProps}
+    >
+      {children ? (
+        <div className="flex grow shrink-0 basis-0 flex-col items-start gap-2 self-stretch overflow-y-auto bg-default-background">
+          <ModernNavbar
+            className="h-auto w-full flex-none"
+            rightSlot={
+              <>
+                <Button variant="brand-secondary" onClick={() => {}}>
+                  Log in
+                </Button>
+                <Button onClick={() => {}}>Sign up</Button>
+              </>
+            }
+            logo="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/y2rsnhq3mex4auk54aye.png"
+          >
+            <ModernNavbar.NavItem>Product</ModernNavbar.NavItem>
+            <ModernNavbar.NavItem>Features</ModernNavbar.NavItem>
+            <ModernNavbar.NavItem>Pricing</ModernNavbar.NavItem>
+            <ModernNavbar.NavItem>About</ModernNavbar.NavItem>
+            <ModernNavbar.NavItem>Changelog</ModernNavbar.NavItem>
+            <ModernNavbar.NavItem>Contact</ModernNavbar.NavItem>
+          </ModernNavbar>
+          {children}
+        </div>
+      ) : null}
+    </div>
+  );
+});
+
+export const DefaultPageLayout = DefaultPageLayoutRoot;
