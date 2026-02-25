@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { usePersistedState } from "@/hooks/usePersistedState";
 import { Button } from "@/ui/components/Button";
 import { DefaultPageLayout } from "@/ui/layouts/DefaultPageLayout";
-import { FeatherCheck, FeatherPlus } from "@subframe/core";
+import { FeatherPlus } from "@subframe/core";
 import { Breadcrumb } from "@/ui/components/Breadcrumb";
 import { CreateTripModal } from "@/app/trips/CreateTripModal";
 import { TripCard } from "@/app/trips/TripCard";
@@ -27,7 +28,7 @@ const MOCK_TRIPS: Trip[] = [
 
 export default function SkiTripsPage() {
   const router = useRouter();
-  const [trips, setTrips] = useState<Trip[]>(MOCK_TRIPS);
+  const [trips, setTrips] = usePersistedState<Trip[]>("ski-trip-planner:trips", MOCK_TRIPS);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleCreateTrip = (data: { name: string; location: string; year: string }) => {
@@ -69,7 +70,7 @@ export default function SkiTripsPage() {
               Create New Trip
             </Button>
           </div>
-          <div className="w-full items-start gap-6 grid grid-cols-3 mobile:grid mobile:grid-cols-1">
+          <div className="w-full items-start gap-5 grid grid-cols-3 grid-rows-2 mobile:grid mobile:grid-cols-1">
             {trips.map((trip) => (
               <TripCard
                 key={trip.id}
@@ -77,130 +78,6 @@ export default function SkiTripsPage() {
                 onClick={() => handleTripClick(trip.id)}
               />
             ))}
-          </div>
-          <div className="flex w-full items-start gap-4">
-            <div className="flex grow shrink-0 basis-0 flex-col items-center overflow-hidden rounded-md border border-solid border-neutral-border bg-default-background shadow-sm">
-              <div className="flex w-full flex-col items-start gap-4 border-b border-solid border-neutral-border bg-neutral-50 px-12 py-12">
-                <img
-                  className="h-12 flex-none rounded-full object-cover"
-                  src="https://res.cloudinary.com/subframe/image/upload/v1723780577/uploads/302/hhmv6ey0yajkadnmcp0a.png"
-                />
-                <div className="flex w-full flex-col items-start gap-2">
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Basic
-                  </span>
-                  <span className="text-heading-3 font-heading-3 text-default-font">
-                    For building personal portfolios and hobby sites
-                  </span>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-6 bg-default-background px-12 py-12">
-                <div className="flex items-end gap-2">
-                  <span className="text-heading-1 font-heading-1 text-default-font">
-                    $15
-                  </span>
-                  <div className="flex items-end gap-2 pb-1">
-                    <span className="text-body-bold font-body-bold text-subtext-color">
-                      per user
-                    </span>
-                  </div>
-                </div>
-                <div className="flex w-full flex-col items-start gap-2">
-                  <span className="text-body-bold font-body-bold text-default-font">
-                    What&apos;s included
-                  </span>
-                  <div className="flex w-full flex-col items-start gap-2">
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <Button
-                  className="h-10 w-full flex-none"
-                  variant="neutral-secondary"
-                  size="large"
-                  onClick={() => {}}
-                >
-                  Get Started
-                </Button>
-              </div>
-            </div>
-            <div className="flex grow shrink-0 basis-0 flex-col items-center overflow-hidden rounded-md border border-solid border-neutral-border bg-default-background shadow-sm">
-              <div className="flex w-full flex-col items-start gap-4 border-b border-solid border-neutral-border bg-neutral-50 px-12 py-12">
-                <img
-                  className="h-12 flex-none rounded-full object-cover"
-                  src="https://res.cloudinary.com/subframe/image/upload/v1723780859/uploads/302/hh4s5xjmsigiehqkb1uh.png"
-                />
-                <div className="flex w-full flex-col items-start gap-2">
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Basic
-                  </span>
-                  <span className="text-heading-3 font-heading-3 text-default-font">
-                    For building personal portfolios and hobby sites
-                  </span>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-6 bg-default-background px-12 py-12">
-                <div className="flex items-end gap-2">
-                  <span className="text-heading-1 font-heading-1 text-default-font">
-                    $15
-                  </span>
-                  <div className="flex items-end gap-2 pb-1">
-                    <span className="text-body-bold font-body-bold text-subtext-color">
-                      per user
-                    </span>
-                  </div>
-                </div>
-                <div className="flex w-full flex-col items-start gap-2">
-                  <span className="text-body-bold font-body-bold text-default-font">
-                    What&apos;s included
-                  </span>
-                  <div className="flex w-full flex-col items-start gap-2">
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FeatherCheck className="text-body font-body text-subtext-color" />
-                      <span className="text-body font-body text-subtext-color">
-                        For hobby sites
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <Button
-                  className="h-10 w-full flex-none"
-                  variant="neutral-secondary"
-                  size="large"
-                  onClick={() => {}}
-                >
-                  Get Started
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
