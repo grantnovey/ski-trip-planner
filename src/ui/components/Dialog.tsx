@@ -22,7 +22,7 @@ const Content = React.forwardRef<HTMLDivElement, ContentProps>(function Content(
     <SubframeCore.Dialog.Content asChild={true} {...otherProps}>
       <div
         className={SubframeUtils.twClassNames(
-          "flex min-w-[320px] flex-col items-start gap-2 rounded-md border border-solid border-neutral-border bg-default-background shadow-lg max-h-[90vh] overflow-auto",
+          "flex min-w-[320px] flex-col items-start gap-2 rounded-md border border-solid border-neutral-border bg-default-background shadow-lg max-h-[90vh] overflow-auto origin-center data-[state=open]:animate-[dialog-in_0.2s_ease-out] data-[state=closed]:animate-[dialog-out_0.15s_ease-in]",
           className
         )}
         ref={ref}
@@ -50,7 +50,7 @@ const DialogRoot = React.forwardRef<HTMLDivElement, DialogRootProps>(
       <SubframeCore.Dialog.Root asChild={true} {...otherProps}>
         <div
           className={SubframeUtils.twClassNames(
-            "flex h-full w-full flex-col items-center justify-center gap-2 bg-[#00000099]",
+            "flex h-full w-full flex-col items-center justify-center gap-2 bg-[#00000099] backdrop-blur-sm data-[state=open]:animate-[overlay-fade-in_0.2s_ease-out] data-[state=closed]:animate-[overlay-fade-out_0.15s_ease-in]",
             className
           )}
           ref={ref}

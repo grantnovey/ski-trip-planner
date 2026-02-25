@@ -65,7 +65,7 @@ const TextFieldRoot = React.forwardRef<HTMLLabelElement, TextFieldRootProps>(
     return (
       <label
         className={SubframeUtils.twClassNames(
-          "group/be48ca43 flex flex-col items-start gap-1",
+          "group/be48ca43 flex w-full flex-col items-start gap-1",
           className
         )}
         ref={ref}

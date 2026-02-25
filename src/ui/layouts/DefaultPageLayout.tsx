@@ -4,9 +4,10 @@
  * Default Page Layout — https://app.subframe.com/e0dfc8dc556f/library?component=Default+Page+Layout_a57b1c43-310a-493f-b807-8cc88e2452cf
  */
 
-import React from "react";
+import React, { useState } from "react";
 import { ModernNavbar } from "@/ui/components/ModernNavbar";
 import { Button } from "@/ui/components/Button";
+import { LoginModal } from "@/ui/components/LoginModal";
 import * as SubframeUtils from "../utils";
 
 interface DefaultPageLayoutRootProps
@@ -22,6 +23,8 @@ const DefaultPageLayoutRoot = React.forwardRef<
   { children, className, ...otherProps }: DefaultPageLayoutRootProps,
   ref
 ) {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   return (
     <div
       className={SubframeUtils.twClassNames(
@@ -37,7 +40,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
             className="h-auto w-full flex-none"
             rightSlot={
               <>
-                <Button variant="brand-secondary" onClick={() => {}}>
+                <Button variant="brand-secondary" onClick={() => setShowLoginModal(true)}>
                   Log in
                 </Button>
                 <Button onClick={() => {}}>Sign up</Button>
@@ -55,6 +58,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
           {children}
         </div>
       ) : null}
+      <LoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
     </div>
   );
 });
