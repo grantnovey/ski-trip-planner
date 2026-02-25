@@ -18,7 +18,7 @@ export function TripCard({ trip, onClick }: TripCardProps) {
   return (
     <button
       type="button"
-      className="flex grow shrink-0 basis-0 flex-col items-start gap-4 rounded-md border border-solid border-neutral-border bg-default-background px-6 py-6 shadow-sm text-left hover:border-brand-300 hover:shadow-md transition-colors cursor-pointer w-full"
+      className="flex grow shrink-0 basis-0 flex-col items-start gap-4 rounded-md border border-solid border-neutral-border bg-default-background px-6 py-6 text-left hover:shadow-md transition-shadow cursor-pointer w-full"
       onClick={onClick}
     >
       <div className="flex w-full flex-col items-start gap-2">
