@@ -70,7 +70,7 @@ export default function SkiTripsPage() {
               Create New Trip
             </Button>
           </div>
-          <div className="w-full items-start gap-5 grid grid-cols-3 grid-rows-2 mobile:grid mobile:grid-cols-1">
+          <div className="w-full items-start gap-5 grid grid-cols-[repeat(3,1fr)] grid-rows-[repeat(2,1fr)] mobile:grid mobile:grid-cols-1">
             {trips.map((trip) => (
               <TripCard
                 key={trip.id}
